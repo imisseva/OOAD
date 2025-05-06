@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2acec849ee964640b515732881f0f35e" Name="Diagram1">
+        <EntityTypeShape EntityType="MeetingsModel.Appointment" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingsModel.GroupMeeting" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingsModel.Reminder" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MeetingsModel.User" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="MeetingsModel.FK__Appointme__owner__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="MeetingsModel.FK__GroupMeet__appoi__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="MeetingsModel.FK__Reminder__appoin__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="MeetingsModel.GroupMeetingParticipant" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
