@@ -1,4 +1,4 @@
-﻿namespace OOAD
+﻿namespace OOAD.View
 {
     partial class Form1
     {
@@ -37,4 +37,3 @@
         #endregion
     }
 }
-
