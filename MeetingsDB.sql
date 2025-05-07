@@ -60,3 +60,7 @@ INSERT INTO Reminder (timeBefore, appointmentId) VALUES
 (30, 4), -- Nhắc trước 30 phút đón con
 (60, 5), -- Nhắc trước 1 giờ cho họp dự án X
 (15, 6); -- Nhắc trước 15 phút cho buổi training
+
+INSERT INTO Appointment (title, location, startTime, endTime, ownerId) VALUES
+(N'Họp dự án', N'Phòng 301', '2025-05-06 09:00:00', '2025-05-06 10:30:00', 1),
+(N'Khám bệnh', N'Bệnh viện Đa khoa', '2025-05-07 14:00:00', '2025-05-07 15:00:00', 2);

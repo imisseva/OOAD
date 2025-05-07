@@ -153,6 +153,7 @@
             this.Controls.Add(this.dgv1);
             this.Name = "MainView";
             this.Text = "Calendar System";
+            
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
