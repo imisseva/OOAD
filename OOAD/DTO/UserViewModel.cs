@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace OOAD.DTO
 {
-    public class GroupMeetingModel
+    public class UserViewModel
     {
         public int Id { get; set; }
-        public int AppointmentId { get; set; }
-        public List<int> UserIds { get; set; } = new List<int>();
-       
-
+        public string Name { get; set; }
+        public int AppointmentCount { get; set; }
     }
 }

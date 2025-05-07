@@ -11,9 +11,14 @@ namespace OOAD.View
     {
         private DateTime currentdate = DateTime.Today;
         private readonly AppointmentController controller = new AppointmentController();
+        private readonly UserController userController = new UserController();
+        private readonly UserViewModel _currentUser;
+        private readonly UserViewModel userViewModel = new UserViewModel();
+
 
         public MainView()
         {
+            
             InitializeComponent();
             InitializeGrid();
             LoadAppointments();
@@ -22,27 +27,107 @@ namespace OOAD.View
         private void InitializeGrid()
         {
             dgv1.Columns.Clear();
-            dgv1.Columns.Add("Time", "Time");
-            dgv1.Columns.Add("Title", "Title");
-            dgv1.Columns.Add("Location", "Location");
-            dgv1.Columns.Add("Duration", "Duration");
-            dgv1.Columns.Add("Type", "Type");
-            dgv1.Columns.Add("Participants", "Participants");
-            dgv1.Columns.Add("Reminder", "Reminder");
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Time",
+                HeaderText = "Time",
+                ValueType = typeof(DateTime)
+            });
+
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Title",
+                HeaderText = "Title",
+                ValueType = typeof(string)
+            });
+
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Location",
+                HeaderText = "Location",
+                ValueType = typeof(string)
+            });
+
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Duration",
+                HeaderText = "Duration",
+                ValueType = typeof(TimeSpan)
+            });
+
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Type",
+                HeaderText = "Type",
+                ValueType = typeof(string)
+            });
+
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Participants",
+                HeaderText = "Participants",
+                ValueType = typeof(string)
+            });
+
+            dgv1.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Reminder",
+                HeaderText = "Reminder",
+                ValueType = typeof(string)
+            });
+            dgv1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void LoadAppointments()
         {
-            lbDate.Text = currentdate.ToString("dd/MM/yyyy");
-            dgv1.Rows.Clear();
+            
+                try
+                {
+                    lbDate.Text = currentdate.ToString("dd/MM/yyyy");
+                    dgv1.Rows.Clear();
 
-            List<AppointmentViewModel> appointments = controller.GetAppointmentsForDate(currentdate);
-            foreach (var a in appointments)
-            {
-                dgv1.Rows.Add(a.Time, a.Title, a.Location, a.Duration, a.Type, a.Participants, a.Reminder);
+                    List<AppointmentViewModel> appointments = controller.GetAppointmentsForDate(currentdate);
+
+                    // Debug: Kiểm tra dữ liệu trả về
+                    Console.WriteLine($"Số lượng appointment: {appointments?.Count}");
+                    if (appointments != null)
+                    {
+                        foreach (var a in appointments)
+                        {
+                            Console.WriteLine($"Appointment: {a.Title} - {a.Time}");
+                        }
+                    }
+
+                    if (appointments == null || appointments.Count == 0)
+                    {
+                        MessageBox.Show("Không có dữ liệu cuộc hẹn nào được tìm thấy");
+                        return;
+                    }
+
+                    foreach (var a in appointments)
+                    {
+                        // Format dữ liệu trước khi hiển thị
+                        //string timeString = a.Time.ToString("HH:mm");
+                        //string durationString = a.Duration.ToString(@"hh\:mm");
+
+                        dgv1.Rows.Add(
+                            //timeString,
+                            a.Title,
+                            a.Location,
+                            //durationString,
+                            a.Type,
+                            a.Participants,
+                            a.Reminder
+                        );
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi khi tải dữ liệu: {ex.Message}");
+                }
             }
-        }
-
+       
         private void btYesterday_Click(object sender, EventArgs e)
         {
             currentdate = currentdate.AddDays(-1);
@@ -65,5 +150,7 @@ namespace OOAD.View
         {
             // Mở form tạo cuộc hẹn (sẽ xây dựng sau nếu cần)
         }
+
+       
     }
 }

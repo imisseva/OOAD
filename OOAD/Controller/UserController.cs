@@ -3,15 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOAD.DTO;
 using OOAD.Model;
 namespace OOAD.Controller
 {
     public class UserController
     {
         private readonly MeetingsEntities db = new MeetingsEntities();
-        public List<User> GetUsers()
+        public List<UserViewModel> GetUsers()
         {
-            return db.User.ToList();
+            return db.User.Select(u => new UserViewModel
+            {
+                Id = u.id,
+                Name = u.Name,
+                AppointmentCount = u.Appointment.Count
+            }).ToList();
         }
 
         public User GetUserDetails(int id)
